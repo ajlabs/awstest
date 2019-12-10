@@ -1,0 +1,23 @@
+#
+# uses /usr/local/bin/youtube-dl
+#
+
+if [ $# -eq 0 ] || [ -z "$1" ]
+  then
+    echo "No arguments supplied"
+    exit
+fi
+
+url=$1
+
+# list available format
+echo "Available format for source $url"
+echo "=========================================="
+youtube-dl -F $1
+echo "You can choose numeric value from the format column. You can also choose 'format value for video + format value for audio'. For example, you can enter 136+148"
+
+echo -n "Enter your choice:"
+read fmt
+echo "youtube-dl -f $fmt $url"
+youtube-dl -f $fmt $url
+
